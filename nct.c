@@ -583,7 +583,8 @@ void  Play(void)
          {
             if(Timer()-start_time>=end_time-start_time)
             {
-               FigureScore--;
+	       if(FigureScore)
+		  FigureScore--;
                break;
             }
 	    Sync();
@@ -648,6 +649,7 @@ void  Play(void)
 	       ReadKey();
 	       CheckKey();
 	       end_time=Timer();
+	       FigureScore=0;
 	       break;
 	    default:
 	       CheckKey();
@@ -659,7 +661,8 @@ void  Play(void)
          {
 glue:       GlueFigure();
             CheckFullLines();
-            Score+=FigureScore-HaveSeenNext*5;
+	    if(FigureScore>HaveSeenNext*5)
+	       Score+=FigureScore-HaveSeenNext*5;
             if(FullLines/10>CurrentSpeed)
                CurrentSpeed=FullLines/10;
             if(CurrentSpeed>9)

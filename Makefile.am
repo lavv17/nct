@@ -20,7 +20,7 @@ dist-hook:
 	    cp $(distdir)/$(PACKAGE).spec $(srcdir)/$(PACKAGE).spec
 	@echo $(PACKAGE).lsm updating...
 	@rm -f $(distdir)/$(PACKAGE).lsm
-	@SIZE=`GZIP=$(GZIP_ENV) $(TAR) chozf - $(distdir) | wc -c`; SIZE=`expr \( $$SIZE + 512 \) / 1024`; echo Size: $$SIZE kB; \
+	@SIZE=`$(TAR) chof - $(distdir) | gzip $(GZIP_ENV) | wc -c`; SIZE=`expr \( $$SIZE + 512 \) / 1024`; echo Size: $$SIZE kB; \
 	 DATE=`date +%Y-%m-%d`; echo Date: $$DATE; \
 	 sed -e "s/Version:	.*/Version:	$(VERSION)/" \
 	     -e "s/[0-9]* kB $(PACKAGE)-[0-9.]*\.tar\.gz/$$SIZE kB $(PACKAGE)-$(VERSION).tar.gz/" \
@@ -31,9 +31,9 @@ dist-hook:
 REL_DIR=/ftp/pub/software/unix/games/tetris
 release:
 	cvs commit -m $(VERSION)
-	make distcheck
-	cvs commit -m $(VERSION)
 	make dist
+	cvs commit -m $(VERSION)
+	make distcheck
 	mv $(PACKAGE)-$(VERSION).tar.gz $(REL_DIR)
 	cp -p $(PACKAGE).lsm $(REL_DIR)/$(PACKAGE)-$(VERSION).lsm
 	cd $(REL_DIR) && \
