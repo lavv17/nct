@@ -36,5 +36,7 @@ struct score_line
 };
 
 struct score_line *get_score_line(int num_colors,int num);
+void lock_score_table(int how,int num_colors,int num,int count);
+void unlock_score_table();
 
 extern int last_added_score;

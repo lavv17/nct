@@ -785,6 +785,7 @@ void ShowHallOfFame()
 	    goto out;
       }
    }
+   unlock_score_table();
    
    curs_set(0);
    wrefresh(w);
@@ -795,6 +796,7 @@ void ShowHallOfFame()
       ungetch(LastKey); /* for speed dialog */
 
 out:
+   unlock_score_table();
    delwin(w);
 #undef W
 #undef H

@@ -98,7 +98,7 @@ void unpack_score_line(struct score_line *u, struct score_line_packed *p)
    u->name[sizeof(p->name)]=0;
 }
 
-static void lock_score_table(int how,int num_colors,int num,int count)
+void lock_score_table(int how,int num_colors,int num,int count)
 {
    struct flock lk;
    lk.l_type=how;
@@ -107,7 +107,7 @@ static void lock_score_table(int how,int num_colors,int num,int count)
    lk.l_len=sizeof(*score_table)*count;
    fcntl(score_table_fd,F_SETLKW,&lk);
 }
-static void unlock_score_table()
+void unlock_score_table()
 {
    /* zero len means to eof */
    lock_score_table(F_UNLCK,1,0,0);
