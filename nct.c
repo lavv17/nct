@@ -159,7 +159,7 @@ void  DrawFigureAt(WINDOW *w,int x,int y,struct coord *fig,chtype c)
 {
    int   i;
    chtype oldbkgd=getbkgd(w);
-   wbkgdset(w,A_NORMAL);
+   wbkgdset(w,A_NORMAL|' ');
    for(i=SQUARE_NUM; i>0; i--,fig++)
    {
       if(wmove(w,y+fig->y,x+fig->x*2)==ERR)
@@ -179,7 +179,7 @@ void  SaveUnderFigure(int x,int y,struct coord *fig,chtype *c)
 void  RestoreUnderFigure(int x,int y,struct coord *fig,chtype *c)
 {
    int   i;
-   wbkgdset(WellWindow,A_NORMAL);
+   wbkgdset(WellWindow,A_NORMAL|' ');
    for(i=SQUARE_NUM; i>0; i--,fig++,c++)
    {
       if(wmove(WellWindow,y+fig->y,(x+fig->x)*2)==ERR)
@@ -242,7 +242,7 @@ void  DisplayStatistics(void)
    wprintw(StatusWindow,"  Speed:      %9u\n",CurrentSpeed);
    wprintw(StatusWindow,"  Full lines: %9u\n\n",FullLines);
    wprintw(StatusWindow,"  SCORE:      %9lu\n",Score);
-   wbkgdset(StatusWindow,A_DIM);
+   wbkgdset(StatusWindow,A_DIM|' ');
    box(StatusWindow,0,0);
 
    wnoutrefresh(StatusWindow);
@@ -254,7 +254,7 @@ void  RedrawWell(void)
    chtype c;
 
    werase(WellWindow);
-   wbkgdset(WellWindow,A_NORMAL);
+   wbkgdset(WellWindow,A_NORMAL|' ');
    for(y=0; y<WELL_DEPTH; y++)
    {
       for(x=0; x<WELL_WIDTH; x++)
@@ -394,7 +394,7 @@ void  ShowColors(void)
    }
    
    sub=derwin(ColorWindow,ColorsNum+2,w,0,0);
-   wbkgdset(sub,A_DIM);
+   wbkgdset(sub,A_DIM|' ');
    box(sub,0,0);
    delwin(sub);
    
@@ -679,7 +679,7 @@ void GameOver()
    if(!w)
       return;
    
-   wbkgd(w,(has_colors()?COLOR_PAIR(11):0)|A_BOLD);
+   wbkgd(w,(has_colors()?COLOR_PAIR(11):0)|A_BOLD|' ');
    cwaddstr(w,0,"G A M E    O V E R");
    beep();
    flushinp();
