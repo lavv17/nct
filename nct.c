@@ -1,7 +1,7 @@
 /*
  * NCT (Colored Tetris)
  *
- * Copyright (c) 1993, 1998 by Alexander V. Lukyanov (lav@yars.free.net)
+ * Copyright (c) 1993, 1998, 1999 by Alexander V. Lukyanov (lav@yars.free.net)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -840,7 +840,7 @@ int   main()
    keypad(stdscr,TRUE);
    meta(stdscr,TRUE);
    
-   addstr("NCT "VERSION"  Copyright (c) 1998 Alexander V. Lukyanov <lav@yars.free.net>\n\n"
+   addstr("NCT "VERSION"  Copyright (c) 1998-1999 Alexander V. Lukyanov <lav@yars.free.net>\n\n"
 	  "There is absolutely no warranty. This is free software that gives you\n"
 	  "freedom to use, modify and redistribute it under certain conditions.\n"
 	  "See COPYING (GNU GPL) for details.\n");
