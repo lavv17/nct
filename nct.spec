@@ -1,8 +1,8 @@
 Name: nct
 Summary: Tetris-like game extended by colors
-Version: 1.1
+Version: 1.2
 Release: 1
-Copyright: GPL
+Copyright: GNU GPL
 Group: Amusements/Games
 Source: ftp://ftp.yars.free.net/pub/software/unix/games/tetris/nct-%{PACKAGE_VERSION}.tar.gz
 BuildRoot: /tmp/nct-root
