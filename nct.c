@@ -835,6 +835,9 @@ int   main()
 
    initscr();
    start_color();
+#ifdef HAVE_USE_DEFAULT_COLORS
+   use_default_colors();
+#endif
    cbreak();
    noecho();
    keypad(stdscr,TRUE);

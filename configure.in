@@ -34,7 +34,7 @@ AC_HEADER_TIME
 
 dnl Checks for library functions.
 AC_FUNC_MMAP
-AC_CHECK_FUNCS(gettimeofday)
+AC_CHECK_FUNCS(gettimeofday use_default_colors)
 
 if test $prefix = /usr -a $localstatedir = '${prefix}/var'; then
    localstatedir = /var

@@ -1,3 +1,7 @@
+Version 1.2
+
+* several fixes for SysV curses. Now works with native solaris curses.
+
 Version 1.1
 
 * fixed rare hangs of one figure (caused by timer overflow)
