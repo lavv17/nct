@@ -1,0 +1,9 @@
+Version 1.1
+
+* fixed rare hangs of one figure (caused by timer overflow)
+* interpret 0-9 keys in hall of fame as speed for next game
+* nct.spec corrected
+
+Version 1.0
+
+* initial version
