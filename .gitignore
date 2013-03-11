@@ -20,7 +20,6 @@
 Makefile
 Makefile.in
 aclocal.m4
-autogen.sh
 autom4te.cache/
 config.h
 config.h.in
