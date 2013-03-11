@@ -1,0 +1,22 @@
+Version 1.4
+
+* don't add score for figure when the game was paused.
+
+Version 1.3
+
+* unlock score file properly, so that more than one nct can update it.
+
+Version 1.2
+
+* several fixes for SysV curses. Now works with native solaris curses.
+* call use_default_colors when built with ncurses.
+
+Version 1.1
+
+* fixed rare hangs of one figure (caused by timer overflow)
+* interpret 0-9 keys in hall of fame as speed for next game
+* nct.spec corrected
+
+Version 1.0
+
+* initial version

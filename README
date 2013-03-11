@@ -1,0 +1,48 @@
+
+Welcome to N Colored Tetris!
+
+
+This game was originally written by me in i86 assembly language for DOS, and
+the binary was just 1940 bytes. I was second year student, it was 1993.
+
+Some time later (in 1995) I decided to rewrite it in C for unix. I used my
+own interface library that tried to work on both unix and dos. The game
+actually worked that time, but I had not finished scoring.
+
+Now (1998) I remembered that unfinished game and decided to rewrite it using
+ncurses library and publish it under GNU GPL.
+
+
+The game is similar to famous Tetris game (by A. Pajitnov & V. Gerasimov),
+but is extended by color, which has its function. The number of colors can
+be changed, and in the case of 1 color we get the original Tetris game.
+
+The colors are ordered by weights assigned to them. More heavy colors can
+replace more light ones. Full lines of the same color disappear.
+
+
+Scores are separate for each number of colors. For each figure a number of
+points are added, minus number of lines it falled for itself and minus 5
+points for seeing the next figure. For full lines of light colors extra
+bonus is added.
+
+
+Keys are:
+   j, 7, left, home    -   move left
+   k, 8, up            -   rotate
+   l, 9, right, pgup   -   move right
+   space, 0, down      -   drop
+   1                   -   next figure
+   q                   -   quit
+   p                   -   pause
+
+
+As usual, there is no warranty. That would be _your_ keyboard you break :)
+
+
+Have fun!
+
+
+Alexander V. Lukyanov <lav@yars.free.net>
+
+Thanks to Alexey Baulin who inspired me to create a tetris modification.
