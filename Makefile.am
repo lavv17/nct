@@ -28,16 +28,15 @@ dist-hook:
 	    $(srcdir)/$(PACKAGE).lsm > $(distdir)/$(PACKAGE).lsm && \
 	    cp $(distdir)/$(PACKAGE).lsm $(srcdir)/$(PACKAGE).lsm
 
-REL_DIR=/ftp/pub/software/unix/games/tetris
+REL_DIR=/ftp/pub/source/nct
 release:
-	cvs commit -m $(VERSION)
-	make dist
-	cvs commit -m $(VERSION)
 	make distcheck
+	make release-ftp
+
+release-ftp: $(PACKAGE)-$(VERSION).tar.gz
 	mv $(PACKAGE)-$(VERSION).tar.gz $(REL_DIR)
 	cp -p $(PACKAGE).lsm $(REL_DIR)/$(PACKAGE)-$(VERSION).lsm
 	cd $(REL_DIR) && \
 	    (addbz $(PACKAGE)-$(VERSION).tar.gz; \
 	    rm -f $(PACKAGE).tar.gz && ln -s $(PACKAGE)-$(VERSION).tar.gz $(PACKAGE).tar.gz)
 	mailx -s add lsm@execpc.com < $(PACKAGE).lsm
-	cvs tag $(PACKAGE)-`echo $(VERSION) | sed 's/\./-/g'` .
