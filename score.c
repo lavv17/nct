@@ -20,7 +20,7 @@
 
 #include <config.h>
 #include <sys/types.h>
-#include <values.h>
+#include <limits.h>
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
