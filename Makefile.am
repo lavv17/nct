@@ -1,26 +1,16 @@
-bin_PROGRAMS = nct
-nct_SOURCES = nct.c nct.h score.c score.h
-
-confpaths.h: Makefile
-	echo "#define SCOREDIR \"$(localstatedir)/games\"" > $@
-
-score.o: confpaths.h
+SUBDIRS = m4 lib src
 
 EXTRA_DIST = nct.spec nct.lsm
-
-DISTCLEANFILES = confpaths.h
-
-AUTOMAKE_OPTIONS = foreign
 
 dist-hook:
 	@echo $(PACKAGE).spec updating...
 	@rm -f $(distdir)/$(PACKAGE).spec
-	@sed "s/%define version .*/%define version $(VERSION)/" \
+	@-sed "s/%define version .*/%define version $(VERSION)/" \
 	    $(srcdir)/$(PACKAGE).spec > $(distdir)/$(PACKAGE).spec && \
 	    cp $(distdir)/$(PACKAGE).spec $(srcdir)/$(PACKAGE).spec
 	@echo $(PACKAGE).lsm updating...
 	@rm -f $(distdir)/$(PACKAGE).lsm
-	@SIZE=`$(TAR) chof - $(distdir) | gzip $(GZIP_ENV) | wc -c`; SIZE=`expr \( $$SIZE + 512 \) / 1024`; echo Size: $$SIZE kB; \
+	@-SIZE=`$(TAR) chof - $(distdir) | gzip $(GZIP_ENV) | wc -c`; SIZE=`expr \( $$SIZE + 512 \) / 1024`; echo Size: $$SIZE kB; \
 	 DATE=`date +%Y-%m-%d`; echo Date: $$DATE; \
 	 sed -e "s/Version:	.*/Version:	$(VERSION)/" \
 	     -e "s/[0-9]* kB $(PACKAGE)-[0-9.]*\.tar\.gz/$$SIZE kB $(PACKAGE)-$(VERSION).tar.gz/" \

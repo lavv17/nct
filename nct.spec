@@ -1,4 +1,4 @@
-%define version 1.4
+%define version 1.4a
 %define release 1
 
 Name: nct

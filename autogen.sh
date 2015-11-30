@@ -7,7 +7,7 @@ test -z "$srcdir" && srcdir=.
 PKG_NAME="nct"
 
 (test -f $srcdir/configure.ac \
-  && test -f $srcdir/nct.c) || {
+  && test -f $srcdir/src/nct.c) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
     echo " top-level $PKG_NAME directory"
 
@@ -72,20 +72,16 @@ test -n "$NO_AUTOMAKE" || (aclocal --version) < /dev/null > /dev/null 2>&1 || {
   DIE=1
 }
 
-ver=`gettextize --version 2>&1 | sed -n 's/^.*GNU gettext.* \([0-9]*\.[0-9.]*\).*$/\1/p'`
+(gnulib-tool --version) < /dev/null > /dev/null 2>&1 || {
+	test -x $HOME/gnulib/gnulib-tool && PATH=$PATH:$HOME/gnulib
+}
 
-case $ver in
-  '') gettext_fail_text="Unknown gettext version.";;
-  0.1[5-9]* | 0.[2-9]* | [1-9].*) ;;
-  *) gettext_fail_text="Old gettext version $ver.";;
-esac
-
-if test "$gettext_fail_text" != ""; then
-  echo "$gettext_fail_text."
-  echo "Get ftp://ftp.gnu.org/pub/gnu/gettext/gettext-0.15.tar.gz"
-  echo "(or a newer version if it is available)"
+(gnulib-tool --version) < /dev/null > /dev/null 2>&1 || {
+  echo
+  echo "**Error**: You must have \`gnulib-tool' in PATH to compile $PKG_NAME."
+  echo "Get it from git://git.savannah.gnu.org/gnulib"
   DIE=1
-fi
+}
 
 if test "$DIE" -eq 1; then
   exit 1

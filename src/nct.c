@@ -27,10 +27,19 @@
 #include <unistd.h>
 #include <pwd.h>
 #include <ctype.h>
-#ifdef HAVE_NCURSES_H
-# include <ncurses.h>
+
+#if defined HAVE_NCURSESW_CURSES_H
+#  include <ncursesw/curses.h>
+#elif defined HAVE_NCURSESW_H
+#  include <ncursesw.h>
+#elif defined HAVE_NCURSES_CURSES_H
+#  include <ncurses/curses.h>
+#elif defined HAVE_NCURSES_H
+#  include <ncurses.h>
+#elif defined HAVE_CURSES_H
+#  include <curses.h>
 #else
-# include <curses.h>
+#  error "SysV or X/Open-compatible Curses header file required"
 #endif
 
 #include "nct.h"
@@ -327,6 +336,7 @@ void  cwaddstr(WINDOW *w,int line,const char *m)
 {
    int my,mx;
    getmaxyx(w,my,mx);
+   (void)my;
    mvwaddstr(w,line,(mx-strlen(m))/2,m);
 }
 
@@ -384,6 +394,7 @@ void  ShowColors(void)
       return;
 
    getmaxyx(ColorWindow,h,w);
+   (void)h;
 
    for(c=0; c<ColorsNum; c++)
    {
