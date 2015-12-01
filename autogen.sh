@@ -138,7 +138,7 @@ do
 	libtoolize --force --copy
 	mv Makefile.am~ Makefile.am
       fi
-      : gnulib-tool --update
+      gnulib-tool --update
       echo "Running aclocal $aclocalinclude ..."
       aclocal $aclocalinclude
       if grep "^A[MC]_CONFIG_HEADER" configure.ac >/dev/null; then
