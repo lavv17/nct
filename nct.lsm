@@ -1,7 +1,7 @@
 Begin3
 Title:		NCT - colored tetris
 Version:	1.4a
-Entered-date:	2015-11-30
+Entered-date:	2015-12-01
 Description:	NCT is curses based color-extended tetris game.
 		You can choose the number of colors and in case
 		of 1 color you get the classic game. See README

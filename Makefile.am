@@ -1,4 +1,4 @@
-SUBDIRS = m4 lib src
+SUBDIRS = m4 src
 
 EXTRA_DIST = nct.spec nct.lsm
 

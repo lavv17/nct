@@ -66,17 +66,10 @@ test -n "$NO_AUTOMAKE" || (aclocal --version) < /dev/null > /dev/null 2>&1 || {
 }
 
 (: gnulib-tool --version) < /dev/null > /dev/null 2>&1 || {
-  echo
-  echo "**Error**: You must have \`gnulib-tool' in PATH to compile $PKG_NAME."
-  echo "Get it from git://git.savannah.gnu.org/gnulib"
-  DIE=1
-}
-
-(gnulib-tool --version) < /dev/null > /dev/null 2>&1 || {
 	test -x $HOME/gnulib/gnulib-tool && PATH=$PATH:$HOME/gnulib
 }
 
-(gnulib-tool --version) < /dev/null > /dev/null 2>&1 || {
+(: gnulib-tool --version) < /dev/null > /dev/null 2>&1 || {
   echo
   echo "**Error**: You must have \`gnulib-tool' in PATH to compile $PKG_NAME."
   echo "Get it from git://git.savannah.gnu.org/gnulib"
@@ -138,7 +131,7 @@ do
 	libtoolize --force --copy
 	mv Makefile.am~ Makefile.am
       fi
-      gnulib-tool --update
+      : gnulib-tool --update
       echo "Running aclocal $aclocalinclude ..."
       aclocal $aclocalinclude
       if grep "^A[MC]_CONFIG_HEADER" configure.ac >/dev/null; then
