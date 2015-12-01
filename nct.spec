@@ -7,13 +7,13 @@ Version: %{version}
 Release: %{release}
 License: GNU GPL
 Group: Amusements/Games
-Source: ftp://ftp.yar.ru/pub/source/nct/nct-%{version}.tar.gz
+Source: http://lav.yar.ru/download/nct/nct-%{version}.tar.gz
 BuildRoot: /tmp/nct-root
 
 %description
 Tetris-like game, extended by colors. Light colors can be replaced by heavy
-ones. Number of colors can be chosen, in case of one color we get classic game.
-
+ones, lines of the same color disappear. Number of colors can be chosen, in
+case of one color we get the classic game.
 
 %prep
 %setup
