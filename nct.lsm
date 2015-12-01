@@ -9,8 +9,8 @@ Description:	NCT is curses based color-extended tetris game.
 Keywords:	tetris, curses, color
 Author:		lav@yars.free.net (Alexander V. Lukyanov)
 Maintained-by:	lav@yars.free.net (Alexander V. Lukyanov)
-Primary-site:	ftp.yar.ru /pub/source/nct
-		0 kB nct-1.4a.tar.gz
+Primary-site:	http://lav.yar.ru/download/nct/
+		113 kB nct-1.4a.tar.gz
 Alternate-site:	metalab.unc.edu /pub/Linux/games/arcade/tetris
 Platforms:	Unix, sysv curses or ncurses
 Copying-policy: GNU GPL

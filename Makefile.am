@@ -10,23 +10,23 @@ dist-hook:
 	    cp $(distdir)/$(PACKAGE).spec $(srcdir)/$(PACKAGE).spec
 	@echo $(PACKAGE).lsm updating...
 	@rm -f $(distdir)/$(PACKAGE).lsm
-	@-SIZE=`$(TAR) chof - $(distdir) | gzip $(GZIP_ENV) | wc -c`; SIZE=`expr \( $$SIZE + 512 \) / 1024`; echo Size: $$SIZE kB; \
+	@-SIZE=`tardir=$(distdir) && $(am__tar) | GZIP=$(GZIP_ENV) gzip -c | wc -c`; SIZE=`expr \( $$SIZE + 512 \) / 1024`; echo Size: $$SIZE kB; \
 	 DATE=`date +%Y-%m-%d`; echo Date: $$DATE; \
 	 sed -e "s/Version:	.*/Version:	$(VERSION)/" \
-	     -e "s/[0-9]* kB $(PACKAGE)-[0-9.]*\.tar\.gz/$$SIZE kB $(PACKAGE)-$(VERSION).tar.gz/" \
+	     -e "s/[0-9]* kB $(PACKAGE)-[0-9a-z.]*\.tar\.gz/$$SIZE kB $(PACKAGE)-$(VERSION).tar.gz/" \
 	     -e "s/Entered-date:	.*/Entered-date:	$$DATE/" \
 	    $(srcdir)/$(PACKAGE).lsm > $(distdir)/$(PACKAGE).lsm && \
 	    cp $(distdir)/$(PACKAGE).lsm $(srcdir)/$(PACKAGE).lsm
 
-REL_DIR=/ftp/pub/source/nct
+REL_DIR=/home/lav/www/download/nct
 release:
 	make distcheck
-	make release-ftp
-
-release-ftp: $(PACKAGE)-$(VERSION).tar.gz
 	mv $(PACKAGE)-$(VERSION).tar.gz $(REL_DIR)
 	cp -p $(PACKAGE).lsm $(REL_DIR)/$(PACKAGE)-$(VERSION).lsm
 	cd $(REL_DIR) && \
 	    (addbz $(PACKAGE)-$(VERSION).tar.gz; \
-	    rm -f $(PACKAGE).tar.gz && ln -s $(PACKAGE)-$(VERSION).tar.gz $(PACKAGE).tar.gz)
-	mailx -s add lsm@execpc.com < $(PACKAGE).lsm
+	    gpg -ba $(PACKAGE)-$(VERSION).tar.gz; \
+	    gpg -ba $(PACKAGE)-$(VERSION).tar.bz2; \
+	    gpg -ba $(PACKAGE)-$(VERSION).tar.xz; \
+	    md5sum $(PACKAGE)-$(VERSION).tar.gz $(PACKAGE)-$(VERSION).tar.bz2 $(PACKAGE)-$(VERSION).tar.xz > $(PACKAGE)-$(VERSION).md5sum)
+#	mutt -s add lsm@execpc.com < $(PACKAGE).lsm
