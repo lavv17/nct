@@ -5,4 +5,4 @@ compiler:
 before_install:
     - sudo apt-get update -qq
     - sudo apt-get install -qq libncurses5-dev
-script: ./bootstrap.sh && ./configure && make
+script: ./autogen.sh && make
