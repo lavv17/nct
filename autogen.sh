@@ -101,6 +101,7 @@ do
     echo skipping $dr -- flagged as no auto-gen
   else
     echo processing $dr
+    test -d $dr/build-aux || mkdir $dr/build-aux
     macrodirs=`sed -n -e 's,AM_ACLOCAL_INCLUDE(\(.*\)),\1,gp' < $coin`
     ( cd $dr
       aclocalinclude="$ACLOCAL_FLAGS"
@@ -121,7 +122,7 @@ do
 	  echo "Running gettextize...  Ignore non-fatal messages."
 	  echo "no" | gettextize --force --copy --no-changelog
 	  mv configure.ac~ configure.ac
-	  mv m4/Makefile.am~ m4/Makefile.am 
+	  mv m4/Makefile.am~ m4/Makefile.am
 	  echo "Making $dr/aclocal.m4 writable ..."
 	  test -r $dr/aclocal.m4 && chmod u+w $dr/aclocal.m4
         fi
