@@ -32,5 +32,6 @@ install-sh
 missing
 nct
 stamp-h1
+build-aux/
 
 *~
