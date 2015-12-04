@@ -15,6 +15,7 @@
 *.exe
 *.out
 *.app
+nct
 
 .deps/
 Makefile
@@ -27,10 +28,6 @@ config.log
 config.status
 configure
 confpaths.h
-depcomp
-install-sh
-missing
-nct
 stamp-h1
 build-aux/
 
