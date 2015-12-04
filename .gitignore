@@ -30,5 +30,6 @@ configure
 confpaths.h
 stamp-h1
 build-aux/
+INSTALL
 
 *~
